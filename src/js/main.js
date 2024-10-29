@@ -17,9 +17,20 @@ let currentPlayer = "x";
 let player1 = document.getElementById("player1")
 let player2 = document.getElementById("player2")
 let progress = 0
+let winX = false
+let winO = false
+let gameOver = false
+
 let one = document.getElementById("1")
 let two = document.getElementById("2")
 let three = document.getElementById("3")
+let four = document.getElementById("4")
+let five = document.getElementById("5")
+let six = document.getElementById("6")
+let seven = document.getElementById("7")
+let eight = document.getElementById("8")
+let nine = document.getElementById("9")
+
 
 
 function remove() {
@@ -34,7 +45,7 @@ function addListenerHitBox() {
     state.view.squares.forEach((square) => {
         square.addEventListener("click", (event) => {
             if (square.classList.contains("x") || square.classList.contains("circle")) {
-                
+
             }
             else if (currentPlayer === "circle") {
                 player1.classList.add("border")
@@ -50,19 +61,70 @@ function addListenerHitBox() {
                 progress++
                 currentPlayer = "circle"
             }
-            if(progress === 9)
-            {
-                setTimeout(remove, 2000)
-                progresso = 0
+
+            if (one.classList.contains("x") && two.classList.contains("x") && three.classList.contains("x") ||
+                four.classList.contains("x") && five.classList.contains("x") && six.classList.contains("x") ||
+                seven.classList.contains("x") && eight.classList.contains("x") && nine.classList.contains("x") ||
+                one.classList.contains("x") && four.classList.contains("x") && seven.classList.contains("x") ||
+                two.classList.contains("x") && five.classList.contains("x") && eight.classList.contains("x") ||
+                three.classList.contains("x") && six.classList.contains("x") && nine.classList.contains("x") ||
+                one.classList.contains("x") && five.classList.contains("x") && nine.classList.contains("x") ||
+                three.classList.contains("x") && five.classList.contains("x") && seven.classList.contains("x")) {
+                winX = true
+                gameOver = true
+                checkWin()
             }
 
-            if(one.classList.contains("x") && two.classList.contains("x") && three.classList.contains("x"))
-            {
-                alert("x ganhou")
+            else if (one.classList.contains("circle") && two.classList.contains("circle") && three.classList.contains("circle") ||
+                four.classList.contains("circle") && five.classList.contains("circle") && six.classList.contains("circle") ||
+                seven.classList.contains("circle") && eight.classList.contains("circle") && nine.classList.contains("circle") ||
+                one.classList.contains("circle") && four.classList.contains("circle") && seven.classList.contains("circle") ||
+                two.classList.contains("circle") && five.classList.contains("circle") && eight.classList.contains("circle") ||
+                three.classList.contains("circle") && six.classList.contains("circle") && nine.classList.contains("circle") ||
+                one.classList.contains("circle") && five.classList.contains("circle") && nine.classList.contains("circle") ||
+                three.classList.contains("circle") && five.classList.contains("circle") && seven.classList.contains("circle")) {
+                winO = true
+                gameOver = true
+                checkWin()
+
+            }
+
+            if (progress === 9 && winX == false && winO == false) {
+                let button = document.createElement("h2");
+                button.className = "reset";
+                button.innerHTML = "VELHA!!! Clique aqui para jogar denovo";
+                document.querySelector("main").appendChild(button)
+
+                button.addEventListener("click", function () {
+                    window.location.reload()
+                })
             }
         })
     })
 
+}
+
+function checkWin() {
+    if (winX == true && gameOver == true && winO == false) {
+        let button = document.createElement("h2");
+        button.className = "reset";
+        button.innerHTML = "PLAYER 1 GANHOU!!! Clique aqui para jogar denovo";
+        document.querySelector("main").appendChild(button)
+        button.addEventListener("click", function () {
+            window.location.reload()
+        })
+    }
+
+    else if (winO == true && gameOver == true) {
+        let button = document.createElement("h2");
+        button.className = "reset";
+        button.innerHTML = "PLAYER 2 GANHOU!!! Clique aqui para jogar denovo";
+        document.querySelector("main").appendChild(button)
+
+        button.addEventListener("click", function () {
+            window.location.reload()
+        })
+    }
 }
 
 function init() {
