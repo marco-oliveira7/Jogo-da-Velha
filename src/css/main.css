@@ -80,12 +80,14 @@ main {
     background-color: rgba(58, 166, 255, 0.699);
     z-index: 300;
     box-shadow: 1px 1px 3px black;
+    cursor: default;
 }
 #player2 {
     padding: 5px;
     background-color: rgba(58, 166, 255, 0.863);
     z-index: 300;
     box-shadow: 1px 1px 3px black;
+    cursor: default;
 }
 
 #versus {
@@ -111,10 +113,12 @@ main {
     margin-top: 5em;
     position: relative;
     z-index: 300;
+    
 }
 
 .panel-row {
     z-index: 300;
+    cursor: pointer;
 }
 
 .square {
@@ -178,4 +182,5 @@ main {
     top: 70px;
     left: 50%;
     translate: -50% -0px;
+    cursor: pointer;
 }

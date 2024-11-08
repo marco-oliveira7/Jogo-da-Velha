@@ -18,7 +18,7 @@ let player1 = document.getElementById("player1")
 let player2 = document.getElementById("player2")
 let progress = 0
 let winX = false
-let winO = false
+let winCircle = false
 let gameOver = false
 
 let one = document.getElementById("1")
@@ -83,13 +83,13 @@ function addListenerHitBox() {
                 three.classList.contains("circle") && six.classList.contains("circle") && nine.classList.contains("circle") ||
                 one.classList.contains("circle") && five.classList.contains("circle") && nine.classList.contains("circle") ||
                 three.classList.contains("circle") && five.classList.contains("circle") && seven.classList.contains("circle")) {
-                winO = true
+                winCircle = true
                 gameOver = true
                 checkWin()
 
             }
 
-            if (progress === 9 && winX == false && winO == false) {
+            if (progress === 9 && winX == false && winCircle == false) {
                 let button = document.createElement("h2");
                 button.className = "reset";
                 button.innerHTML = "VELHA!!! Clique aqui para jogar denovo";
@@ -105,7 +105,7 @@ function addListenerHitBox() {
 }
 
 function checkWin() {
-    if (winX == true && gameOver == true && winO == false) {
+    if (winX == true && gameOver == true && winCircle == false) {
         let button = document.createElement("h2");
         button.className = "reset";
         button.innerHTML = "PLAYER 1 GANHOU!!! Clique aqui para jogar denovo";
@@ -115,7 +115,7 @@ function checkWin() {
         })
     }
 
-    else if (winO == true && gameOver == true) {
+    else if (winCircle == true && gameOver == true) {
         let button = document.createElement("h2");
         button.className = "reset";
         button.innerHTML = "PLAYER 2 GANHOU!!! Clique aqui para jogar denovo";
